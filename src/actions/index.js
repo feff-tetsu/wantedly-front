@@ -20,3 +20,10 @@ export const toggleTodo = id => {
     id
   }
 }
+
+export const changeValue = text => {
+  return {
+    type: 'CHANGE_VALUE',
+    text
+  }
+}

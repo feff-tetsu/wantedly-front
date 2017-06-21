@@ -1,6 +1,7 @@
 import React from 'react'
 import Footer from './Footer'
-import AddTodo from '../containers/AddTodo'
+import InputForm from '../containers/InputForm'
+import SearchResult from '../containers/SearchResults'
 import VisibleTodoList from '../containers/VisibleTodoList'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
@@ -18,14 +19,15 @@ const theme = createMuiTheme({
   }),
 });
 
-
-const App = () => (
+const App = (store) => (
   <MuiThemeProvider theme={theme}>
     <div>
-      <Grid container gutter={12}>
-        <Grid item xs={6}>
-          <Grid item xs={3}>
-            <AddTodo />
+      <Grid container gutter={16}>
+        <Grid item xs={8}>
+          <Grid item xs={4}>
+            <InputForm />
+            <SearchResult
+               />
           </Grid>
         </Grid>
         <Grid item xs={6}>
