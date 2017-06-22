@@ -5,6 +5,8 @@ import StarIcon from 'material-ui-icons/Star';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import { ListItem, ListItemText, ListItemSecondaryAction } from 'material-ui/List';
+import {red500, yellow500, blue500} from 'material-ui/styles/colors';
+
 
 const Repository = ({ name, owner, description }) => (
     <div>
@@ -13,7 +15,7 @@ const Repository = ({ name, owner, description }) => (
         <ListItemText primary={name} secondary={description} />
         <ListItemSecondaryAction>
           <IconButton aria-label="Delete">
-            <StarIcon />
+            <StarIcon color='action'/>
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>

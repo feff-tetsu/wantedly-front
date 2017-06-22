@@ -28,6 +28,7 @@ export const getSearchResults = results => {
 }
 
 export const getWatchingList = results => {
+  console.log(results)
   return {
     type: 'GET_WATCHING_LIST',
     results
