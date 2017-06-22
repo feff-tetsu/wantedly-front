@@ -1,6 +1,6 @@
-const searchResults = (state = {repositories:[]}, action) => {
+const watchingList = (state = {repositories:[]}, action) => {
   switch (action.type) {
-    case 'GET_SEARCH_RESULTS':
+    case 'GET_WATCHING_LIST':
       return {
           repositories: action.results
           };
@@ -9,4 +9,4 @@ const searchResults = (state = {repositories:[]}, action) => {
   }
 }
 
-export default searchResults
+export default watchingList

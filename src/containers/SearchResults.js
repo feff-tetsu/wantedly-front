@@ -1,24 +1,28 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import List from 'material-ui/List'
+import Repository from '../components/Repository'
 
 function mapStateToProps(state) {
   return {
-    // propsを通して取得する際に使う名前: Storeのstateの値
-    text: state.searchResults.text,
+    repositories: state.searchResults.repositories,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    // propsを通して取得する際に使う名前
   };
 }
-
 
 let SearchResults = (SearchResults) => {
   return (
     <div>
-      {SearchResults.text}
+      <List>
+        {SearchResults.repositories.map(repository => {
+          return(
+            <Repository key={repository.id} {...repository} />
+          )
+        })}
+      </List>
     </div>
   )
 }

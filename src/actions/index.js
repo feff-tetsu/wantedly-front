@@ -1,11 +1,3 @@
-let nextTodoId = 0
-export const addTodo = text => {
-  return {
-    type: 'ADD_TODO',
-    id: nextTodoId++,
-    text
-  }
-}
 
 export const setVisibilityFilter = filter => {
   return {
@@ -25,5 +17,19 @@ export const changeValue = text => {
   return {
     type: 'CHANGE_VALUE',
     text
+  }
+}
+
+export const getSearchResults = results => {
+  return {
+    type: 'GET_SEARCH_RESULTS',
+    results
+  }
+}
+
+export const getWatchingList = results => {
+  return {
+    type: 'GET_WATCHING_LIST',
+    results
   }
 }

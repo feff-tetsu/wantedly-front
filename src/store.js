@@ -1,4 +1,6 @@
 import { createStore } from 'redux'
-import todoApp from './reducers/index'
+import githubApi from './reducers/index'
 
-let store = createStore(todoApp)
+let store = createStore(githubApi)
+
+export default store

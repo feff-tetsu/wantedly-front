@@ -1,12 +1,8 @@
 import { combineReducers } from 'redux'
-import todos from './todos'
-import visibilityFilter from './visibilityFilter'
 import searchResults from './searchResults'
 
-const todoApp = combineReducers({
-  todos,
-  visibilityFilter,
-  searchResults
+const githubApi = combineReducers({
+  searchResults,
 })
 
-export default todoApp
+export default githubApi
