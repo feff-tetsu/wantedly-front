@@ -2,12 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import List from 'material-ui/List'
 import Repository from '../components/Repository'
-import { checkStatus, parseJSON } from '../lib/api'
-import getWatchingList from '../actions/index'
-import store from '../store'
+
+//const PRIVATE_ACCESS_TOKEN = '3c6def5505e87df630934250458e1df0e9011500'
 
 function mapStateToProps(state) {
   return {
+    repositories: state.watchingList.watching_repositories,
   };
 }
 function mapDispatchToProps(dispatch) {
@@ -15,23 +15,19 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-class WatchingList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      width: 40,
-    };
-  }
-
-  render() {
-    return (
-      <div>
-        <List>
-
-        </List>
-      </div>
-    );
-  }
+let WatchingList = (WatchingList) => {
+  console.log(WatchingList)
+  return (
+    <div>
+      <List>
+        {WatchingList.repositories.map(repository => {
+          return(
+            <Repository key={repository.id} {...repository} />
+          )
+        })}
+      </List>
+    </div>
+  );
 }
 WatchingList = connect(mapStateToProps, mapDispatchToProps)(WatchingList)
 

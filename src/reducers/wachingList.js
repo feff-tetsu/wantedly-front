@@ -1,8 +1,8 @@
-const watchingList = (state = {repositories:[]}, action) => {
+const watchingList = (state = {watching_repositories:[]}, action) => {
   switch (action.type) {
     case 'GET_WATCHING_LIST':
       return {
-          repositories: action.results
+          watching_repositories: action.results
           };
     default:
       return state

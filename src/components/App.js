@@ -2,6 +2,7 @@ import React from 'react'
 import InputForm from '../containers/InputForm'
 import SearchResult from '../containers/SearchResults'
 import WatchingList from '../containers/WatchingList'
+import InputAccessToken from '../containers/InputAccessToken'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
 import { purple, green, red } from 'material-ui/styles/colors';
@@ -22,14 +23,17 @@ const App = (store) => (
   <MuiThemeProvider theme={theme}>
     <div>
       <Grid container gutter={16}>
-        <Grid item xs={8}>
-          <Grid item xs={8}>
+        <Grid item xs={6}>
+          <Grid item xs={10}>
             <InputForm />
             <SearchResult />
           </Grid>
         </Grid>
-        <Grid item xs={8}>
-          <WatchingList />
+        <Grid item xs={6}>
+          <Grid item xs={10}>
+            <InputAccessToken />
+            <WatchingList />
+          </Grid>
         </Grid>
       </Grid>
     </div>

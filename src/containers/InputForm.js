@@ -10,6 +10,7 @@ let InputForm = ({ dispatch }) => {
   return (
     <div>
      <TextField
+       placeholder="Input search word"
        onKeyDown={e => {
          if (e.keyCode === KEY_ENTER) {
            e.target.value = ""
