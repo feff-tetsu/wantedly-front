@@ -28,9 +28,29 @@ export const getSearchResults = results => {
 }
 
 export const getWatchingList = results => {
-  console.log(results)
   return {
     type: 'GET_WATCHING_LIST',
     results
+  }
+}
+
+export const reload = result => {
+  return {
+    type: 'RELOAD',
+    result
+  }
+}
+
+export const reloadWatchingList = results => {
+  return {
+    type: 'RELOAD_WATCHING_LIST',
+    results
+  }
+}
+
+export const saveAccessToken = result => {
+  return {
+    type: 'SAVE_ACCESS_TOKEN',
+    result
   }
 }

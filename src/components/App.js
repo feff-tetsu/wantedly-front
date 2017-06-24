@@ -3,6 +3,7 @@ import InputForm from '../containers/InputForm'
 import SearchResult from '../containers/SearchResults'
 import WatchingList from '../containers/WatchingList'
 import InputAccessToken from '../containers/InputAccessToken'
+import AccessToken from '../containers/AccessToken'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
 import { purple, green, red } from 'material-ui/styles/colors';
@@ -32,6 +33,7 @@ const App = (store) => (
         <Grid item xs={6}>
           <Grid item xs={10}>
             <InputAccessToken />
+            <AccessToken />
             <WatchingList />
           </Grid>
         </Grid>

@@ -2,10 +2,22 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getSearchResults } from '../actions'
 import TextField from 'material-ui/TextField';
-import { checkStatus, parseJSON } from '../lib/api'
+import { checkStatus, parseJSON, sharedApi } from '../lib/api'
+import _ from 'lodash'
 const KEY_ENTER = 13
 
 let InputForm = ({ dispatch }) => {
+
+  const delayedSearch = _.debounce((words) => {
+    if (words !== "") {
+      sharedApi.getRepositoriesSearch(words)
+        .then(checkStatus)
+        .then(parseJSON)
+        .then(result => {
+          dispatch(getSearchResults(result.items))
+        })
+      }
+  }, 500)
 
   return (
     <div>
@@ -17,12 +29,7 @@ let InputForm = ({ dispatch }) => {
          }
        }}
        onChange={e => {
-         fetch('https://api.github.com/search/repositories?q='+e.target.value+'+language:assembly&sort=stars&order=desc')
-           .then(checkStatus)
-           .then(parseJSON)
-           .then(result => {
-             dispatch(getSearchResults(result.items))
-           })
+         delayedSearch(e.target.value)
        }}
      />
     </div>

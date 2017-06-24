@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import List from 'material-ui/List'
-import Repository from '../components/Repository'
+import Repository from '../containers/Repository'
 
 //const PRIVATE_ACCESS_TOKEN = '3c6def5505e87df630934250458e1df0e9011500'
 
@@ -16,7 +16,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 let WatchingList = (WatchingList) => {
-  console.log(WatchingList)
   return (
     <div>
       <List>

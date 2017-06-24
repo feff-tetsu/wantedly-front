@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import List from 'material-ui/List'
-import Repository from '../components/Repository'
+import Repository from '../containers/Repository'
 
 function mapStateToProps(state) {
   return {
     repositories: state.searchResults.repositories,
+    accessToken: state.saveAccessToken.access_token,
   };
 }
 function mapDispatchToProps(dispatch) {
@@ -19,7 +20,10 @@ let SearchResults = (SearchResults) => {
       <List>
         {SearchResults.repositories.map(repository => {
           return(
-            <Repository key={repository.id} {...repository} />
+            <Repository
+              key={repository.id}
+              access_token={SearchResults.accessToken}
+              {...repository} />
           )
         })}
       </List>
