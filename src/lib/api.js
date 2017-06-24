@@ -14,6 +14,13 @@ class Api {
     return fetch('https://api.github.com/user/subscriptions?access_token='+token)
   }
 
+  deleteWatching(full_name, token) {
+    return fetch('https://api.github.com/repos/'+full_name+'/subscription',
+    {method: 'DELETE',
+     headers: { Authorization:'token '+ token },
+     })
+  }
+
   putWatching(full_name, token) {
     return fetch('https://api.github.com/repos/'+full_name+'/subscription',
     {method: 'PUT',
@@ -22,6 +29,12 @@ class Api {
        subscribed: true,
      }),
     })
+  }
+
+  getRepositoryStatus(full_name, token) {
+    return fetch('https://api.github.com/repos/'+full_name+'/subscription',
+      {headers: { Authorization:'token '+ token}}
+    )
   }
 
   getRepositoriesSearch(words) {

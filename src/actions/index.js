@@ -54,3 +54,19 @@ export const saveAccessToken = result => {
     result
   }
 }
+
+export const toggleUnwatchRepository = (repositories, id) => {
+  return {
+    type: 'TOGGLE_UNWATCH_REPOSITORY',
+    repositories,
+    id
+  }
+}
+
+export const addWatchRepository = (repositories, repo) => {
+  return {
+    type: 'ADD_WATCH_REPOSITORY',
+    repositories,
+    repo
+  }
+}

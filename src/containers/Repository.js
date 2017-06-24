@@ -4,27 +4,39 @@ import IconButton from 'material-ui/IconButton';
 import StarIcon from 'material-ui-icons/Star';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
-import reload from '../actions'
+import { toggleUnwatchRepository, addWatchRepository } from '../actions'
 import { ListItem, ListItemText, ListItemSecondaryAction } from 'material-ui/List';
-import { checkStatus, parseJSON, sharedApi } from '../lib/api'
+import { checkStatus, sharedApi } from '../lib/api'
 
+function mapStateToProps(state) {
+  return {
+    access_token: state.saveAccessToken.access_token,
+    repositories: state.watchingList.watching_repositories,
+  };
+}
 
-let Repository = ({ name, owner, description, full_name, access_token, dispatch, reloadWatchingList }) => (
+let Repository = ({ name, owner, description, full_name, id, access_token, repositories, dispatch }) => (
     <div>
       <ListItem
         button
         onClick={e => {
-          sharedApi.putWatching(full_name, access_token)
-          .then(checkStatus)
-          .then(
-            sharedApi.reloadWatchingList(access_token)
+          sharedApi.getRepositoryStatus(full_name, access_token)
+          .then(response => {
+            if (response.status === 200) {
+              sharedApi.deleteWatching(full_name,access_token)
               .then(checkStatus)
-              .then(parseJSON)
-              .then(result => {
-                console.log(result)
-              }))
-        }
-        }
+              .then(
+                dispatch(toggleUnwatchRepository( repositories, id))
+              )
+            } else if (response.status === 404) {
+              sharedApi.putWatching(full_name, access_token)
+              .then(checkStatus)
+              .then(
+                dispatch(addWatchRepository( repositories, { name: name, owner: owner, full_name: full_name, id: id }))
+              )
+            }
+          })
+        }}
       >
         <Avatar src={owner.avatar_url} />
         <ListItemText primary={name} secondary={description} />
@@ -38,7 +50,7 @@ let Repository = ({ name, owner, description, full_name, access_token, dispatch,
     </div>
   )
 
-Repository = connect()(Repository)
+Repository = connect(mapStateToProps)(Repository)
 
 
 export default Repository
