@@ -25,6 +25,18 @@ let InputForm = ({ dispatch, user_name }) => {
       }
   }, 400)
 
+  const delayedUserNameSearch = _.debounce((words , user_name) => {
+    dispatch(saveSearchUserName(user_name))
+    if (words !== "") {
+      sharedApi.getRepositoriesSearch(words, user_name)
+        .then(checkStatus)
+        .then(parseJSON)
+        .then(result => {
+          dispatch(getSearchResults(result.items))
+        })
+      }
+  }, 400)
+
   return (
     <div>
       <TextField
@@ -40,10 +52,8 @@ let InputForm = ({ dispatch, user_name }) => {
       />
       <TextField
         placeholder="Input user name"
-        onKeyDown={e => {
-          if (e.keyCode === KEY_ENTER) {
-            dispatch(saveSearchUserName(e.target.value))
-          }
+        onChange={e => {
+            delayedUserNameSearch('react', e.target.value)
         }}
       />
     </div>
