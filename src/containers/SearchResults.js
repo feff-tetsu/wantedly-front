@@ -7,29 +7,35 @@ function mapStateToProps(state) {
   return {
     repositories: state.searchResults.repositories,
     accessToken: state.saveAccessToken.access_token,
-  };
-}
-function mapDispatchToProps(dispatch) {
-  return {
+    loading: state.searchResults.loading,
   };
 }
 
 let SearchResults = (SearchResults) => {
-  return (
-    <div>
-      <List>
-        {SearchResults.repositories.map(repository => {
-          return(
-            <Repository
-              key={repository.id}
-              access_token={SearchResults.accessToken}
-              {...repository} />
-          )
-        })}
-      </List>
-    </div>
-  )
+  if(SearchResults.repositories.length === 0) {
+    return (
+      <div>
+        No Result
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        <List>
+          {SearchResults.repositories.map(repository => {
+            return(
+              <Repository
+                key={repository.id}
+                access_token={SearchResults.accessToken}
+                {...repository}
+              />
+            )
+          })}
+        </List>
+      </div>
+    )
+  }
 }
-SearchResults = connect(mapStateToProps, mapDispatchToProps)(SearchResults)
+SearchResults = connect(mapStateToProps)(SearchResults)
 
 export default SearchResults
