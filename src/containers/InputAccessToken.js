@@ -20,6 +20,10 @@ let InputAccessToken = ({ dispatch, access_token }) => {
               .then(result => {
                 dispatch(getWatchingList(result))
               })
+              .catch(() => {
+                alert('エラーが発生しました．アクセストークンが間違っている可能性があります．')
+                dispatch(getWatchingList([]))
+              });
            e.target.value = ""
           }
         }}

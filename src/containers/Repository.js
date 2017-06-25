@@ -34,8 +34,15 @@ let Repository = ({ name, owner, description, full_name, id, access_token, repos
               .then(
                 dispatch(addWatchRepository( repositories, { name: name, owner: owner, full_name: full_name, id: id }))
               )
+            } else if (response.status === 401) {
+              alert('アクセストークンを入力してください．')
+            } else {
+              const error = new Error(response.statusText);
+              error.response = response;
+              throw error;
             }
           })
+          .catch(alert('エラーが発生しました．時間をおいてもう一度お試しください．'))
         }}
       >
         <Avatar src={owner.avatar_url} />

@@ -77,3 +77,11 @@ export const saveSearchUserName = user_name => {
     user_name,
   }
 }
+
+export const saveSearch = (word, user_name) => {
+  return {
+    type: 'SAVE_SEARCH_WORD',
+    word,
+    user_name,
+  }
+}
