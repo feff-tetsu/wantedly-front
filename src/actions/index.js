@@ -23,35 +23,35 @@ export const changeValue = text => {
 export const getSearchResults = results => {
   return {
     type: 'GET_SEARCH_RESULTS',
-    results
+    results,
   }
 }
 
 export const getWatchingList = results => {
   return {
     type: 'GET_WATCHING_LIST',
-    results
+    results,
   }
 }
 
 export const reload = result => {
   return {
     type: 'RELOAD',
-    result
+    result,
   }
 }
 
 export const reloadWatchingList = results => {
   return {
     type: 'RELOAD_WATCHING_LIST',
-    results
+    results,
   }
 }
 
 export const saveAccessToken = result => {
   return {
     type: 'SAVE_ACCESS_TOKEN',
-    result
+    result,
   }
 }
 
@@ -59,7 +59,7 @@ export const toggleUnwatchRepository = (repositories, id) => {
   return {
     type: 'TOGGLE_UNWATCH_REPOSITORY',
     repositories,
-    id
+    id,
   }
 }
 
@@ -67,6 +67,13 @@ export const addWatchRepository = (repositories, repo) => {
   return {
     type: 'ADD_WATCH_REPOSITORY',
     repositories,
-    repo
+    repo,
+  }
+}
+
+export const saveSearchUserName = user_name => {
+  return {
+    type: 'SAVE_SEARCH_USER_NAME',
+    user_name,
   }
 }

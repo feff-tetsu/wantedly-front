@@ -37,8 +37,8 @@ class Api {
     )
   }
 
-  getRepositoriesSearch(words) {
-    return fetch('https://api.github.com/search/repositories?q='+words)
+  getRepositoriesSearch(words, user_name) {
+    return fetch('https://api.github.com/search/repositories?q=' + words + '+user:' + user_name)
   }
 }
 
