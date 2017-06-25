@@ -71,13 +71,6 @@ export const addWatchRepository = (repositories, repo) => {
   }
 }
 
-export const saveSearchUserName = user_name => {
-  return {
-    type: 'SAVE_SEARCH_USER_NAME',
-    user_name,
-  }
-}
-
 export const saveSearch = (word, user_name) => {
   return {
     type: 'SAVE_SEARCH_WORD',

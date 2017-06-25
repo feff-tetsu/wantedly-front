@@ -1,11 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import IconButton from 'material-ui/IconButton';
-import StarIcon from 'material-ui-icons/Star';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import { toggleUnwatchRepository, addWatchRepository } from '../actions'
-import { ListItem, ListItemText, ListItemSecondaryAction } from 'material-ui/List';
+import { ListItem, ListItemText } from 'material-ui/List';
 import { checkStatus, sharedApi } from '../lib/api'
 
 function mapStateToProps(state) {
@@ -42,16 +40,13 @@ let Repository = ({ name, owner, description, full_name, id, access_token, repos
               throw error;
             }
           })
-          .catch(alert('エラーが発生しました．時間をおいてもう一度お試しください．'))
+          .catch(response => {
+            alert('エラーが発生しました．時間をおいてもう一度お試しください． '+ response.statusText)
+          })
         }}
       >
         <Avatar src={owner.avatar_url} />
         <ListItemText primary={name} secondary={description} />
-        <ListItemSecondaryAction>
-          <IconButton aria-label="Delete">
-            <StarIcon color='action'/>
-          </IconButton>
-        </ListItemSecondaryAction>
       </ListItem>
       <Divider inset={true} />
     </div>
