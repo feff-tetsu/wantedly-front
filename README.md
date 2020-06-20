@@ -7,7 +7,7 @@ node v6.2.1
 ## インストール
 
 ```
-npm install
+npm instal
 ```
 ## 実行
 ```
